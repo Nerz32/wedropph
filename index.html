@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WeebDrop PH | Anime Cards & Figures</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <link rel="stylesheet" href="assets/fontawesome_v7.2.0/css/all.css">
+    <style>
+        /* ── Dark mode CSS variables ── */
+        :root {
+            --bg-page: #faf9fc;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f5f2fc;
+            --bg-chip: #f2edfc;
+            --bg-cart-btn: #f4f0fe;
+            --bg-cart-hover: #e2d7fc;
+            --text-primary: #1e1a2f;
+            --text-secondary: #4a3b62;
+            --text-muted: #655c7c;
+            --text-label: #5c4b70;
+            --text-cat: #8b6bbd;
+            --text-cart: #3c2c5c;
+            --border-soft: #e9e6f2;
+            --border-card: #f0edf7;
+            --border-card-hv: #e0d6f0;
+            --border-info: #edeaf5;
+            --shadow-card: rgba(0, 0, 0, 0.02);
+            --logo-grad-a: #3b2b5c;
+            --logo-grad-b: #7b4e9e;
+            --hero-highlight: #e9d9ff;
+            --hero-hilight2: #f0e7ff;
+        }
+
+        [data-theme="dark"] {
+            --bg-page: #0f0d1a;
+            --bg-surface: #1a1726;
+            --bg-subtle: #231f33;
+            --bg-chip: #2a2440;
+            --bg-cart-btn: #2a2440;
+            --bg-cart-hover: #3a3060;
+            --text-primary: #ede9f8;
+            --text-secondary: #b8aed4;
+            --text-muted: #8a7fa8;
+            --text-label: #c4b8dc;
+            --text-cat: #c49ef6;
+            --text-cart: #d4c8f0;
+            --border-soft: #2e2846;
+            --border-card: #2a2440;
+            --border-card-hv: #3d3460;
+            --border-info: #2e2846;
+            --shadow-card: rgba(0, 0, 0, 0.25);
+            --logo-grad-a: #c4a8f0;
+            --logo-grad-b: #e0c8ff;
+            --hero-highlight: #2e2050;
+            --hero-hilight2: #3a2860;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .site-header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-soft);
+            background-color: var(--bg-surface);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(2px);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, var(--logo-grad-a), var(--logo-grad-b));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--text-label);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        /* ── Dark mode toggle button ── */
+        .theme-toggle {
+            background: var(--bg-chip);
+            border: 1px solid var(--border-soft);
+            border-radius: 40px;
+            padding: 7px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-cart-hover);
+            border-color: #a590c9;
+        }
+
+        .theme-toggle .toggle-icon {
+            font-size: 0.95rem;
+            line-height: 1;
+        }
+
+        /* nav + toggle wrapper */
+        .nav-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-soft);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background-color: #1e1a2f;
+            border-color: #1e1a2f;
+            color: white;
+        }
+
+        [data-theme="dark"] .btn-primary {
+            background-color: #7b4e9e;
+            border-color: #7b4e9e;
+        }
+
+        .btn-primary:hover {
+            background-color: #3b2b5c;
+            border-color: #3b2b5c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border-color: #cbc3e0;
+            color: var(--text-primary);
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--bg-chip);
+            border-color: #a590c9;
+        }
+
+        /* hero */
+        .hero {
+            padding: 64px 0 56px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(120deg, var(--hero-highlight), var(--hero-hilight2));
+            padding: 0 8px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            letter-spacing: -0.3px;
+            border-left: 5px solid #a78bfa;
+            padding-left: 18px;
+            color: var(--text-primary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 32px;
+            margin: 40px 0 20px;
+        }
+
+        .product-card {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px var(--shadow-card), 0 1px 2px var(--shadow-card);
+            border: 1px solid var(--border-card);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 28px -12px rgba(0, 0, 0, 0.12);
+            border-color: var(--border-card-hv);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: var(--bg-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            padding: 20px 18px 22px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-cat);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 12px 0 16px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--bg-cart-btn);
+            border: none;
+            padding: 12px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-cart);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart i {
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--bg-cart-hover);
+            color: var(--text-primary);
+        }
+
+        .info-section {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 48px 40px;
+            margin: 64px 0 48px;
+            box-shadow: 0 2px 8px var(--shadow-card);
+            border: 1px solid var(--border-info);
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .info-section h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .info-section p {
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 20px;
+        }
+
+        .contact-mini {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: #8b5cf6;
+        }
+
+        .site-footer {
+            text-align: center;
+            border-top: 1px solid var(--border-soft);
+            padding: 32px 0 28px;
+            margin-top: 48px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-label);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #8b5cf6;
+        }
+
+        /* chips in about section */
+        .chip {
+            background: var(--bg-chip);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        @media (max-width: 680px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav-area {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .product-grid {
+                gap: 20px;
+            }
+
+            .info-section {
+                padding: 32px 20px;
+            }
+        }
+
+        /* ── Message Preview Box (in contact section) ── */
+        .message-preview-wrap {
+            margin-top: 28px;
+            background: var(--bg-subtle);
+            border: 1px dashed var(--border-soft);
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-align: left;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message-preview-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .message-preview-box {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            line-height: 1.7;
+            font-family: 'Inter', monospace;
+        }
+
+        .copy-btn {
+            width: 100%;
+            background-color: #1e1a2f;
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        [data-theme="dark"] .copy-btn { background-color: #7b4e9e; }
+
+        .copy-btn:hover { background-color: #3b2b5c; }
+        .copy-btn.copied { background-color: #3d9e6b; }
+
+        .copy-btn i { font-size: 0.85rem; }
+
+        
+        /* Add to your <style> block */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1e1a2f;
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 40px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* View Product Photo */
+        .view-photo-btn {
+            width: 100%;
+            margin-top: 8px;
+            background-color: transparent;
+            border: 1px solid var(--border-soft);
+            padding: 11px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .view-photo-btn:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: #a590c9;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            object-fit: contain;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        #lightbox-close:hover { background: rgba(255,255,255,0.28); }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <h1>WeebDrop PH</h1>
+                <p>cards · figures · collectibles</p>
+            </div>
+            <div class="nav-area">
+                <ul class="nav-links">
+                    <li><a href="#home">home</a></li>
+                    <li><a href="#products">shop</a></li>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#contact">contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="toggle-icon" id="toggleIcon">🌙</span>
+                    <span id="toggleLabel">dark mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="container hero">
+                <h2>your <span class="highlight">anime haven</span><br>cards, figures & more</h2>
+                <p>Rare trading cards, limited edition figures, and exclusive merch — all curated for true collectors.
+                </p>
+                <a href="#products" class="btn btn-primary" style="padding: 12px 28px;">✨ explore collection</a>
+            </div>
+        </section>
+
+        <div class="container" id="products">
+            <!-- <h2 class="section-title">✦ latest arrivals</h2> -->
+            <h2 class="section-title">✦ Collections</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products are injected here by JavaScript -->
+            </div>
+        </div>
+
+        <div class="container" id="about">
+            <div class="info-section">
+                <h3><i class="fa-solid fa-star-half-stroke"></i> Curated for Collectors</h3>
+                <p>We offer high-quality fan-made and alternative anime merchandise, carefully selected for 
+                    craftsmanship and detail. Every item is chosen to meet our standards — so you can enjoy 
+                    great designs at accessible prices.</p>
+                <div style="margin: 20px 0 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                    <span class="chip">🚚 fast shipping</span>
+                    <span class="chip">🔒 secure packaging</span>
+                    <span class="chip">🤝 meet-up available</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="contact">
+            <div class="info-section" style="margin-top: 0;">
+                <!-- <h3><i class="fas fa-store"></i> visit or reach out</h3> -->
+                <h3><i class="fas fa-store"></i> Reach out</h3>
+                <p>Have questions about our anime cards or figures? We'd love to hear from you.</p>
+                <p>Copy the message from any item and paste it directly on Facebook or via email — we'll get back to you right away!</p>
+
+                <!-- Example message preview -->
+                <div class="message-preview-wrap">
+                    <div class="message-preview-label">📋 Example message format</div>
+                    <div class="message-preview-box">Hi WeebDrop PH! 👋
+
+I'm interested in the following item:
+
+📦 Product: Naruto: Akatsuki Legacy Card
+🏷️ Category: ⭐ holo card
+💰 Price: ₱12.99
+
+Is this still available? Thank you! 😊</div>
+                </div>
+
+                <div class="contact-mini">
+                    <div class="contact-item"><i class="fas fa-envelope"></i> weebdrop.ph@gmail.com</div>
+                    <div class="contact-item"><i class="fab fa-facebook"></i> @weebdropph</div>
+                    <!-- <div class="contact-item"><i class="fab fa-twitter"></i> @weebdropph</div> -->
+                </div>
+                <div style="margin-top: 28px;">
+                    <span class="btn btn-outline-light" style="pointer-events: none;"><i class="fas fa-map-pin"></i>
+                        Calamba City, Laguna, Philippines</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">home</a>
+                <a href="#products">shop</a>
+                <a href="#about">about</a>
+                <a href="#contact">contact</a>
+            </div>
+            <p>© 2026 WeebDrop PH — anime collectibles ♡</p>
+            <!-- <p style="margin-top: 8px; font-size: 0.7rem;">demo store — add to cart notifies you ✨</p> -->
+        </div>
+    </footer>
+
+
+    <!--View Product Photo-->
+    <div id="lightbox">
+        <button id="lightbox-close" aria-label="Close photo">✕</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!--Toast Confirmation-->
+    <div id="toast"></div>
+
+
+    <script>
+        (function () {
+
+            /* ============================================================
+               ✏️  PRODUCTS — only edit this array to manage your store
+               ============================================================
+               Fields:
+                 name          – product title
+                 price         – number (e.g. 12.99)
+                 category      – label shown above the title
+                 categoryIcon  – emoji before the category label
+                 imgSrc        – image URL
+                 imgAlt        – image alt text
+            ============================================================ */
+            const products = [
+                {
+                    name: "Demon Slayer: Gyomei",
+                    price: 35.00,
+                    category: "Can Badge",
+                    categoryIcon: "🔰",
+                    imgSrc: "products/Demon_Slayer_Gyomei/img.jpg",
+                    imgAlt: "Demon Slayer: Gyomei"
+                },
+                {
+                    name: "Genshin Impact: Kaveh",
+                    price: 50.00,
+                    category: "Trading Card",
+                    categoryIcon: "🎴",
+                    imgSrc: "products/Genshin_Impact_Kaveh/img.jpg",
+                    imgAlt: "Genshin Impact: Kaveh"
+                },
+                {
+                    name: "Genshin Impact: Yoimiya",
+                    price: 50.00,
+                    category: "Trading Card",
+                    categoryIcon: "🎴",
+                    imgSrc: "products/Genshin_Impact_Yoimiya/img.jpg",
+                    imgAlt: "Genshin Impact: Yoimiya"
+                },
+                {
+                    name: "Re: Zero - Rem & Ram Set",
+                    price: 250.00,
+                    category: "Figure",
+                    categoryIcon: "🧸",
+                    imgSrc: "products/ReZero_rem_ram/img.jpg",
+                    imgAlt: "Re: Zero - Rem & Ram Set"
+                }
+
+            ];
+
+            /* ── Generate the copy-paste inquiry message for a product ── */
+            function buildInquiryMessage({ name, price, category, categoryIcon }) {
+                return `Hi WeebDrop PH! 👋\n\nI'm interested in the following item:\n\n📦 Product: ${name}\n🏷️ Category: ${categoryIcon} ${category}\n💰 Price: ₱${price.toFixed(2)}\n\nIs this still available? Thank you! 😊`;
+            }
+
+            /* ── Build a single product card HTML string ── */
+            function createProductCard({ name, price, category, categoryIcon, imgSrc, imgAlt }) {
+                return `
+                    <div class="product-card" data-name="${name}" data-price="${price.toFixed(2)}">
+                        <div class="product-img">
+                            <img src="${imgSrc}" alt="${imgAlt}">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${categoryIcon} ${category}</div>
+                            <h3 class="product-title">${name}</h3>
+                            <div class="product-price">₱${price.toFixed(2)}</div>
+                            <!--<button class="add-to-cart"><i class="fas fa-cart-plus"></i> add to cart</button>-->
+                            <button class="copy-btn js-copy" data-name="${name}" data-price="${price}" data-category="${category}" data-icon="${categoryIcon}">
+                                <i class="fas fa-copy"></i> copy message
+                            </button>
+                            <button class="view-photo-btn js-view-photo" data-img="${imgSrc}" data-alt="${imgAlt}">
+                                <i class="fas fa-image"></i> view photo
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            /* ── Render all products into #productGrid ── */
+            function renderProducts() {
+                const grid = document.getElementById('productGrid');
+                grid.innerHTML = products.map(createProductCard).join('');
+                attachListeners();
+            }
+
+            /* ── Toast helper ── */
+            let toastTimer;
+            function showToast(msg) {
+                const toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+            }
+
+            /* ── Attach all event listeners after render ── */
+            function attachListeners() {
+
+            /* Copy message buttons */
+            document.querySelectorAll('.js-copy').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const product = {
+                        name: this.dataset.name,
+                        price: parseFloat(this.dataset.price),
+                        category: this.dataset.category,
+                        categoryIcon: this.dataset.icon
+                    };
+
+                    const message = buildInquiryMessage(product);
+
+                    navigator.clipboard.writeText(message).then(() => {
+                        // Visual feedback on the button
+                        const original = this.innerHTML;
+                        this.classList.add('copied');
+                        this.innerHTML = '<i class="fas fa-check"></i> copied!';
+                        setTimeout(() => {
+                            this.classList.remove('copied');
+                            this.innerHTML = original;
+                        }, 2000);
+
+                        showToast('✅ Inquiry message copied! Paste it on Facebook or Email.');
+                    }).catch(() => {
+                        showToast('⚠️ Could not copy. Please copy manually.');
+                    });
+                });
+            });
+
+            /* Smooth scroll for inquire links & nav */
+            document.querySelectorAll('.nav-links a, .js-smooth').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (!href || !href.startsWith('#')) return;
+                    const targetId = href.substring(1);
+                    if (targetId === 'home') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+                    const targetElem = document.getElementById(targetId);
+                    if (targetElem) {
+                        e.preventDefault();
+                        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+
+            // View Product Photo
+            /* View photo buttons */
+            document.querySelectorAll('.js-view-photo').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const lb = document.getElementById('lightbox');
+                    const lbImg = document.getElementById('lightbox-img');
+                    lbImg.src = this.dataset.img;
+                    lbImg.alt = this.dataset.alt;
+                    lb.classList.add('open');
+                });
+            });
+
+                /* Close lightbox */
+                document.getElementById('lightbox').addEventListener('click', function (e) {
+                    if (e.target === this || e.target.id === 'lightbox-close') {
+                        this.classList.remove('open');
+                    }
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+                });
+            }
+
+            renderProducts();
+
+            /* ── Dark mode toggle ── */
+            const html = document.documentElement;
+            const toggleBtn = document.getElementById('themeToggle');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const toggleLbl = document.getElementById('toggleLabel');
+
+            const savedTheme = localStorage.getItem('otaku-theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateToggleUI(savedTheme);
+
+            toggleBtn.addEventListener('click', function () {
+                const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('otaku-theme', next);
+                updateToggleUI(next);
+            });
+
+            function updateToggleUI(theme) {
+                if (theme === 'dark') {
+                    toggleIcon.textContent = '☀️';
+                    toggleLbl.textContent = 'light mode';
+                } else {
+                    toggleIcon.textContent = '🌙';
+                    toggleLbl.textContent = 'dark mode';
+                }
+            }
+
+            /* ── Add to cart (uses event delegation so dynamically rendered cards work) ── */
+            document.getElementById('productGrid').addEventListener('click', function (e) {
+                const button = e.target.closest('.add-to-cart');
+                if (!button) return;
+
+                const card = button.closest('.product-card');
+                const productName = card.getAttribute('data-name') || 'Anime item';
+                const priceValue = card.getAttribute('data-price') || '?';
+
+                // alert(`🛒 added to cart!\n\n${productName}\n$${priceValue} — ready for your collection.`);
+
+                button.style.transform = 'scale(0.97)';
+                setTimeout(() => { button.style.transform = ''; }, 120);
+            });
+
+            /* ── Smooth nav ── */
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    if (targetId === 'home') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+                    const targetElem = document.getElementById(targetId);
+                    if (targetElem) {
+                        e.preventDefault();
+                        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+
+</body>
+
+</html>
