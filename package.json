@@ -1,0 +1,17 @@
+{
+  "name": "weebdrop-ph",
+  "version": "1.0.0",
+  "description": "WeebDrop PH - Anime Cards & Figures",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'No build step required for static site'",
+    "start": "npx serve ."
+  },
+  "keywords": ["anime", "cards", "figures"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.0.0"
+  }
+}
