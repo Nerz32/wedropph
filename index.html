@@ -1,5 +1,12 @@
+<!--
+    Designed & developed by Ronnel Macompas
+    https://ronnelmacompas-dev.vercel.app | ronnelmacompas@gmail.com
+    © 2026
+-->
+
 <!DOCTYPE html>
-<html lang="en" data-theme="ligh">
+<!-- <html lang="en" data-theme="dark"> -->
+<html lang="en">
 
 <head>
     <script>
@@ -14,7 +21,7 @@
     <link rel="icon" href="assets/img/star.png" />
 
     <meta name="description" content="Your anime haven — cards, figures & more. Rare trading cards, limited edition figures, and exclusive merch — all curated for true collectors." />
-    <meta name="author" content="WeebDrop PH" />
+    <meta name="author" content="Ronnel Macompas" />
     <meta name="keywords" content="anime, trading cards, figures, collectibles, merch, Philippines, weebdrop" />
     <link rel="canonical" href="https://weebdrop-ph.vercel.app/" />
 
@@ -45,6 +52,7 @@
         rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
     <link rel="stylesheet" href="assets/fontawesome_v7.2.0/css/all.css">
+
     <style>
         /* ── Dark mode CSS variables ── */
         :root {
@@ -902,7 +910,7 @@ Is this still available? Thank you! 😊</div>
 
 
             // View Product Photo
-            /* View photo buttons */
+            // View photo buttons
             document.querySelectorAll('.js-view-photo').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const lb = document.getElementById('lightbox');
@@ -967,24 +975,6 @@ Is this still available? Thank you! 😊</div>
                 button.style.transform = 'scale(0.97)';
                 setTimeout(() => { button.style.transform = ''; }, 120);
             });
-
-            // /* ── Smooth nav ── */
-            // document.querySelectorAll('.nav-links a').forEach(link => {
-            //     link.addEventListener('click', function (e) {
-            //         const targetId = this.getAttribute('href').substring(1);
-            //         if (targetId === 'home') {
-            //             e.preventDefault();
-            //             window.scrollTo({ top: 0, behavior: 'smooth' });
-            //             return;
-            //         }
-            //         const targetElem = document.getElementById(targetId);
-            //         if (targetElem) {
-            //             e.preventDefault();
-            //             targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            //         }
-            //     });
-            // });
-
         })();
     </script>
 
